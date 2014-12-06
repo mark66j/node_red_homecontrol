@@ -1,0 +1,224 @@
+<script type="text/javascript">
+    RED.nodes.registerType('light',{
+        category: 'output',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+ 	    plm: {value:"", type:"plm"},
+            op: {value:""},
+        },
+        inputs:1,
+        outputs:0,
+        icon: "light.png",
+        label: function() {
+            return "Turn " + this.op;
+        },
+    });
+</script>
+
+<script type="text/x-red" data-template-name="light">
+    <div class="form-row">
+       <label for="node-input-plm"><i class="icon-tag"></i> PLM</label>
+       <input type="text" id="node-input-plm">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+ <div class="form-row">
+        <label for="node-input-op"><i class="icon-tag"></i> Operation</label>
+        <select type="text" id="node-input-op" style="width: 150px;">
+            <option value="ON">On</option>
+            <option value="OFF">Off</option>
+            <option value="PARAM">Param</option>
+            <option value="SCENE">Scene</option>
+        </select>
+    </div>
+
+</script>
+
+
+<script type="text/x-red" data-help-name="light">
+    <p>Controls an Insteon light</p>
+</script>
+
+
+<script type="text/javascript">
+    RED.nodes.registerType('motion',{
+        category: 'input',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+ 	    	plm: {value:"", type:"plm"},
+            device: {value:""},
+        },
+        inputs:0,
+        outputs:1,
+        icon: "input.png",
+        label: function() {
+            return "Motion Sensor " + this.name + ":" + this.device;
+        },
+    });
+</script>
+
+<script type="text/x-red" data-template-name="motion">
+    <div class="form-row">
+       <label for="node-input-plm"><i class="icon-tag"></i> PLM</label>
+       <input type="text" id="node-input-plm">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+ <div class="form-row">
+        <label for="node-input-device"><i class="icon-tag"></i>Device</label>
+        <input type="text" id="node-input-device" placeholder="Device">
+    </div>
+
+</script>
+
+
+<script type="text/x-red" data-help-name="motion">
+    <p>Controls an Insteon motion detector</p>
+</script>
+
+
+<script type="text/javascript">
+RED.nodes.registerType('plm',{
+        category: 'config',
+        defaults: {
+            port: {value:"",required:true},
+        },
+        label: function() {
+            return "PLM: " + this.port;
+        }
+    });
+</script>
+<script type="text/x-red" data-template-name="plm">
+    <div class="form-row">
+        <label for="node-config-input-port"><i class="icon-bookmark"></i>Port</label>
+        <input type="text" id="node-config-input-port">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('monitor',{
+        category: 'input',
+        color: '#a6bbcf',
+        defaults: {
+ 	    	plm: {value:"", type:"plm"},
+        },
+        inputs:0,
+        outputs:1,
+        icon: "input.png",
+        label: function() {
+            return "Insteon Monitor";
+        },
+    });
+</script>
+
+<script type="text/x-red" data-template-name="monitor">
+    <div class="form-row">
+       <label for="node-input-plm"><i class="icon-tag"></i> PLM</label>
+       <input type="text" id="node-input-plm">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+
+<script type="text/x-red" data-help-name="monitor">
+    <p>Monitors Insteon events</p>
+</script>
+
+
+<script type="text/javascript">
+    RED.nodes.registerType('scene',{
+        category: 'output',
+        color: '#a6bbcf',
+        defaults: {
+ 	    	plm: {value:"", type:"plm"},
+ 	    	group: {value:"10"},
+        },
+        inputs:1,
+        outputs:0,
+        icon: "light.png",
+        label: function() {
+            return "Insteon Scene Group " + this.group;
+        },
+    });
+</script>
+
+<script type="text/x-red" data-template-name="scene">
+    <div class="form-row">
+       <label for="node-input-plm"><i class="icon-tag"></i> PLM</label>
+       <input type="text" id="node-input-plm">
+    </div>
+    <div class="form-row">
+        <label for="node-input-group"><i class="icon-tag"></i> Group</label>
+        <input type="text" id="node-input-group">
+    </div>
+</script>
+
+
+<script type="text/x-red" data-help-name="scene">
+    <p>Defines Insteon Scenes</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('raw_command',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+ 	    	plm: {value:"", type:"plm"},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "light.png",
+        label: function() {
+            return "Insteon Raw Command";
+        },
+    });
+</script>
+
+<script type="text/x-red" data-template-name="raw_command">
+    <div class="form-row">
+       <label for="node-input-plm"><i class="icon-tag"></i> PLM</label>
+       <input type="text" id="node-input-plm">
+    </div>
+</script>
+
+
+<script type="text/x-red" data-help-name="raw_command">
+    <p>Sends Raw Insteon Commands</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('link',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+ 	    	plm: {value:"", type:"plm"},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "light.png",
+        label: function() {
+            return "Insteon Link To Gateway";
+        },
+    });
+</script>
+
+<script type="text/x-red" data-template-name="link">
+    <div class="form-row">
+       <label for="node-input-plm"><i class="icon-tag"></i> PLM</label>
+       <input type="text" id="node-input-plm">
+    </div>
+</script>
+
+
+<script type="text/x-red" data-help-name="link">
+    <p>Link Insteon Device to Gateway. Specify device in format like 38F31A</p>
+</script>
